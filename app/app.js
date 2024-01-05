@@ -1,4 +1,3 @@
-import { Badge } from '../node_modules/bootstrap/dist/css/bootstrap.css'
 const ReactDOM = require("react-dom/client");
 const React = require("react");
 const Tipper = require("./components/tipper.jsx");
