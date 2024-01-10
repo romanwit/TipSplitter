@@ -6,6 +6,7 @@ const Header = require("./components/header.jsx");
 const redux = require("redux");
 const Provider = require("react-redux").Provider;
 const reducer = require("./reducer.jsx");
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = redux.createStore(reducer);
 
