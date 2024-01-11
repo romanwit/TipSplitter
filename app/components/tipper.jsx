@@ -1,6 +1,7 @@
 const React = require("react");
 const Button = require("react-bootstrap").Button;
 const Form = require("react-bootstrap").Form;
+const Col = require("react-bootstrap").Col;
 const connect = require("react-redux").connect;
 const actions = require("../actions.jsx");
 
@@ -19,34 +20,52 @@ class Tipper extends React.Component {
         };
     }
 
+    calcSum() {
+
+        var result = (!isNaN(parseFloat(this.state.amount))) ?
+            (parseFloat(this.state.amount) +
+                parseFloat(this.state.amount) * (this.state.tip / 100)).toFixed(2) : ""
+
+        
+        return result;
+        
+    }
+
     render() {
         return <div>
-            <Form.Group className="row">
-            <Form.Control className="col-sm" type='number' min='0' placeholder='1.0' step='0.01'
-                onChange={e => {
-                    this.setState({ amount: e.target.value });
-                }}
-                value={this.state.amount}></Form.Control> +&nbsp;
-            <Form.Control className="col-sm" type='number' min='0' placeholder='1.0' step='0.01'
-                onChange={e => {
-                    this.setState({ tip: e.target.value })
-            }}
-                    value={this.state.tip}></Form.Control>
-            <div className="col-sm-4">&nbsp;% =&nbsp;    
-                <label>{
-                    (!isNaN(parseFloat(this.state.amount))) ?
-                        (parseFloat(this.state.amount) +
-                            parseFloat(this.state.amount) * (this.state.tip / 100)).toFixed(2) : ""}</label>
-                    &nbsp;
-            </div>
-            <div className="col-sm">
-                <Button variant="primary" onClick={this.add.bind(this)}>
-                    +
-                </Button>
-                <Button variant="primary" onClick={this.remove.bind(this)} disabled={this.props.persons.length == 1}>
-                    -
-                </Button>
-            </div>
+            <Form.Group className="row align-items-center">
+                <Col xs={1} style={{ display: 'flex', justifyContent: 'right' }}>
+                    <Button variant="primary" onClick={this.add.bind(this)}>
+                        +
+                    </Button>
+                    <Button variant="primary" onClick={this.remove.bind(this)} disabled={this.props.persons.length == 1}>
+                        -
+                    </Button>
+                </Col>
+                <Col xs={1}>
+                    <Form.Control type='number' min='0' placeholder='1.0' step='1'
+                        onChange={e => {
+                            this.setState({ amount: e.target.value });
+                        }}
+                        value={this.state.amount}>
+                    </Form.Control> 
+                </Col>
+                +&nbsp;
+                <Col xs={1}>
+                    <Form.Control type='number' min='0' placeholder='1.0' step='1'
+                        onChange={e => {
+                            this.setState({ tip: e.target.value })
+                        }}
+                        value={this.state.tip}>
+                    </Form.Control>
+                </Col>
+                <Col>
+                    % =&nbsp;
+                    <label>{this.calcSum()}
+                     </label>
+                     &nbsp; 
+                </Col>
+                
             </Form.Group>
         </div>;
     }
@@ -54,12 +73,15 @@ class Tipper extends React.Component {
     componentDidUpdate() {
         if (!isNaN(parseFloat(this.state.amount))) {
             this.state.oldTotalSum = this.state.totalSum;
-            this.state.totalSum = parseFloat(this.state.amount) + parseFloat(this.state.amount) * (this.state.tip / 100);
+            this.state.totalSum = this.calcSum();
+
         }
         if (this.state.totalSum != this.state.oldTotalSum) {
-
-            this.props.update(this.state.totalSum - this.state.oldTotalSum);
+            if (this.state.amount != "") {
+                this.props.update(this.state.totalSum - this.state.oldTotalSum);
+            }
         }
+
     }
 
     add() {
