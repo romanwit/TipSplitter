@@ -14,7 +14,9 @@ module.exports = {
             directory: path.join(__dirname, "/"),
         },
         port: 8081,
-        open: true
+        open: true,
+        hot: false,
+        liveReload: false
     },
     module: {
         rules: [   
