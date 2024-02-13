@@ -1,5 +1,7 @@
 const React = require("react");
 const Form = require("react-bootstrap").Form;
+const Col = require("react-bootstrap").Col;
+const PeopleFill = require("react-bootstrap-icons").PeopleFill;
 const connect = require("react-redux").connect;
 const actions = require("../actions.jsx");
 
@@ -28,20 +30,27 @@ class Header extends React.Component {
     render() {
         return <div>
             <Form.Group className="row">
-                <Form.Control className="col-sm" type='number' min='0' placeholder='1.0' step='0.01'
+                <Col xs={1} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <PeopleFill />
+                </Col>
+                <Col xs={3} style={{ display: 'flex', justifyContent: 'right' }}>
+                <Form.Control  type='number' min='0' placeholder='1.0' step='0.01'
                     autoFocus 
                     value={this.state.totalSum}
                     onChange={e => {
                         this.setState({ totalSum: e.target.value });
                     }}
-                ></Form.Control>
-                <Form.Text className="col-sm">
+                    ></Form.Control>
+                </Col>
+                <Col xs={1} style={{ display: 'flex', justifyContent: 'right' }}>
+                <Form.Text >
                     &nbsp;<this.comparing
                         left={this.state.totalSum} right={this.props.totalAmountWithTip} />&nbsp;
 
                     <label>{this.props.totalAmountWithTip.toFixed(2)}</label>
                     
-                </Form.Text>
+                    </Form.Text>
+                </Col>
                 <label>&nbsp;</label>
                 <hr/>
             </Form.Group>
