@@ -2,6 +2,8 @@ const React = require("react");
 const Button = require("react-bootstrap").Button;
 const Form = require("react-bootstrap").Form;
 const Col = require("react-bootstrap").Col;
+const PersonPlus = require("react-bootstrap-icons").PersonPlus;
+const PersonDash = require("react-bootstrap-icons").PersonDash;
 const connect = require("react-redux").connect;
 const actions = require("../actions.jsx");
 
@@ -33,13 +35,14 @@ class Tipper extends React.Component {
 
     render() {
         return <div>
+            
             <Form.Group className="row align-items-center">
                 <Col xs={1} style={{ display: 'flex', justifyContent: 'right' }}>
                     <Button variant="primary" onClick={this.add.bind(this)}>
-                        +
+                        <PersonPlus/>
                     </Button>
                     <Button variant="primary" onClick={this.remove.bind(this)} disabled={this.props.persons.length == 1}>
-                        -
+                        <PersonDash/>
                     </Button>
                 </Col>
                 <Col xs={1}>
