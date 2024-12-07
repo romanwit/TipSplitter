@@ -1,4 +1,4 @@
-## **Tip Splitter @React **
+## **Tip Splitter @React**
 
 Calculator for tips, if there are several persons with different amounts having one bill for all.
 
