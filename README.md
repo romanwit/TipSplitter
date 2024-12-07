@@ -9,3 +9,5 @@ Enter total amount (without tip) in the input box in the header, and personal am
 To install necessary Node.JS dependencies, run npm install, to run web server run npm run dev.
 
 Frameworks used: React 18, Redux. Module bundler: Webpack.
+
+see live demo @ https://romanwit.github.io/TipSplitterDemo/
