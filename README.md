@@ -1,3 +1,4 @@
+![Version](https://img.shields.io/badge/1.0.0-MVP)
 ## **Tip Splitter @React**
 
 ![Screenshot](https://github.com/romanwit/TipSplitterDemo/blob/main/README.jpeg)
